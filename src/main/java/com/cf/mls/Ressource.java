@@ -271,7 +271,7 @@ public class Ressource {
 					}
 				} else {
 					Element element = new Element();
-					element.setLabel(name);
+					element.setLabel(regex.getGroup(2));
 					result.put(name, element);
 				}
 			}

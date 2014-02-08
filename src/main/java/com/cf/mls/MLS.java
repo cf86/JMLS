@@ -1121,12 +1121,13 @@ public class MLS {
 	 */
 	public JEditorPane generateJEditorPane(String identifier, boolean enabled, boolean editable, String defaultText, String contentType) {
 		JEditorPane result = new JEditorPane();
-		if (defaultText != null) {
-			result.setText(defaultText);
-		}
 
 		if (contentType != null)
 			result.setContentType(contentType);
+		
+		if (defaultText != null) {
+			result.setText(defaultText);
+		}
 
 		Element element = ressources.getElement(identifier, this.locale);
 		if (element == null) {
@@ -1986,7 +1987,7 @@ public class MLS {
 				b.setTitle(element.getLabel());
 			}
 
-			if ((JPanel) component instanceof JPanel)
+			if (element != null)
 				setToolTip(element.getToolTip(), (JPanel) component);
 		} else if (component instanceof JLabel) {
 			JLabel result = (JLabel) component;
