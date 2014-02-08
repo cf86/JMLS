@@ -27,7 +27,7 @@ mvn clean package
 
 The \*.jar file can be found in the **_target_** directory afterwards.
 
-If you don't want to build it yourself, there is also an already compiled version **-JMLS-1.0.jar_**. The corresponding Javadoc can be found in **_JMLS-1.0.javadoc.jar_**.
+If you don't want to build it yourself, there is also an already compiled version **_JMLS-1.0.jar_**. The corresponding Javadoc can be found in **_JMLS-1.0.javadoc.jar_**.
 
 
 ## How to use
