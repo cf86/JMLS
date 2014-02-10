@@ -172,4 +172,4 @@ mls.addCheckBoxLanguageMenuItem(languageMenu, Locale.US, new LanguageMenuExtensi
 
 ## Copyright
 
-Copyright (c) 2014 Christian Feier. See licence.txt for details. 
+Copyright (c) 2014 Christian Feier <ChristianFeier@gmx.de>. See licence.txt for details. 
