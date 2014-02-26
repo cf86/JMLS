@@ -47,6 +47,7 @@ import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
 import javax.swing.JTree;
 import javax.swing.ToolTipManager;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.TitledBorder;
 
 import com.cf.mls.extension.LanguageMenuExtension;
@@ -636,6 +637,54 @@ public class MLS {
 	}
 
 	/**
+	 * generates a Bordered JPanel
+	 * 
+	 * @param identifier
+	 *            given identifier
+	 * @param type
+	 *            the bevel type, lowered or raised. Can be found in BevelBorder
+	 *            class.
+	 * 
+	 * @return the bordered Panel
+	 */
+	public JPanel generateTitledBevelPanel(String identifier, int type) {
+		return generateTitledBevelPanel(identifier, type, true);
+	}
+
+	/**
+	 * generates a Bordered JPanel
+	 * 
+	 * @param identifier
+	 *            given identifier
+	 * @param type
+	 *            the bevel type, lowered or raised. Can be found in BevelBorder
+	 *            class.
+	 * @param enabled
+	 *            sets the JPanel enabled
+	 * 
+	 * @return the bordered Panel
+	 */
+	public JPanel generateTitledBevelPanel(String identifier, int type, boolean enabled) {
+		if (type != BevelBorder.LOWERED && type != BevelBorder.RAISED)
+			type = BevelBorder.LOWERED;
+
+		JPanel result = new JPanel();
+		result.setBorder(BorderFactory.createTitledBorder(BorderFactory.createBevelBorder(type), "id is missing"));
+		Element element = ressources.getElement(identifier, this.locale);
+		if (element == null) {
+			return result;
+		}
+
+		((TitledBorder) result.getBorder()).setTitle(element.getLabel());
+		setToolTip(element.getToolTip(), result);
+
+		result.setEnabled(enabled);
+
+		register(identifier, result);
+		return result;
+	}
+
+	/**
 	 * generates a JPanel
 	 * 
 	 * @param identifier
@@ -933,6 +982,18 @@ public class MLS {
 	 * 
 	 * @param identifier
 	 *            given identifier
+	 * 
+	 * @return the JRadioButton
+	 */
+	public JRadioButton generateJRadioButton(String identifier) {
+		return generateJRadioButton(identifier, true, null, null);
+	}
+
+	/**
+	 * generates a JRadioButton
+	 * 
+	 * @param identifier
+	 *            given identifier
 	 * @param enabled
 	 *            component enabled
 	 * @param actionListener
@@ -1124,7 +1185,7 @@ public class MLS {
 
 		if (contentType != null)
 			result.setContentType(contentType);
-		
+
 		if (defaultText != null) {
 			result.setText(defaultText);
 		}
@@ -1665,7 +1726,7 @@ public class MLS {
 	}
 
 	/**
-	 * generates a JSlider
+	 * generates a JSlider with min value 0, max value 100 and init value 50
 	 * 
 	 * @param identifier
 	 *            given identifier
@@ -1673,7 +1734,33 @@ public class MLS {
 	 * @return the JSlider
 	 */
 	public JSlider generateJSlider(String identifier) {
-		JSlider result = new JSlider();
+		return generateJSlider(identifier, 0, 100, 50);
+	}
+
+	/**
+	 * generates a JSlider
+	 * 
+	 * @param identifier
+	 *            given identifier
+	 * @param min
+	 *            given min value, if -1 => 0
+	 * @param max
+	 *            given max value, if -1 => 100
+	 * @param initValue
+	 *            given initial value, if -1 => average of min and max
+	 * 
+	 * @return the JSlider
+	 */
+	public JSlider generateJSlider(String identifier, int min, int max, int initValue) {
+		if (min == -1 && max == -1) {
+			min = 0;
+			max = 100;
+		}
+		if (initValue == -1) {
+			initValue = (min + max) / 2;
+		}
+
+		JSlider result = new JSlider(min, max, initValue);
 		Element element = ressources.getElement(identifier, this.locale);
 		if (element == null) {
 			return result;

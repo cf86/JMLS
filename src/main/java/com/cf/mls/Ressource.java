@@ -121,6 +121,10 @@ public class Ressource {
 				this.map.get(identifier).setShortcut(value);
 			else if (param.equalsIgnoreCase("tooltip"))
 				this.map.get(identifier).setToolTip(value);
+			else if (param.equalsIgnoreCase("tooltipHDD"))
+				this.map.get(identifier).setToolTip(value, false);
+			else if (param.equalsIgnoreCase("tooltipJar"))
+				this.map.get(identifier).setToolTip(value, true);
 			else if (param.equalsIgnoreCase("actionCommand"))
 				this.map.get(identifier).setActionCommand(value);
 		} else {
@@ -137,6 +141,10 @@ public class Ressource {
 				element.setShortcut(value);
 			else if (param.equalsIgnoreCase("toolTip"))
 				element.setToolTip(value);
+			else if (param.equalsIgnoreCase("toolTipHDD"))
+				element.setToolTip(value, false);
+			else if (param.equalsIgnoreCase("toolTipJar"))
+				element.setToolTip(value, true);
 			else if (param.equalsIgnoreCase("actionCommand"))
 				element.setActionCommand(value);
 

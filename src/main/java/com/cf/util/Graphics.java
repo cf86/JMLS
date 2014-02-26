@@ -26,7 +26,6 @@ public class Graphics {
 		InputStream stream = MLS.class.getResourceAsStream("/" + path);
 		// if this fails try again using relativ paths and ClassLoader
 		if (stream == null) {
-//			System.err.println("can't find ressource /" + path);
 			stream = ClassLoader.getSystemResourceAsStream(path);
 		}
 
